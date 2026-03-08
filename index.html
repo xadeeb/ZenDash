@@ -1,1 +1,32 @@
-<h1>Mera Productivity Hub</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenDash | Productivity Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="glass-card">
+            <h1 id="greeting">Assalam-o-Alaikum!</h1>
+            <div id="clock">00:00:00</div>
+        </header>
+
+        <section class="glass-card">
+            <h3>Mausam (Weather)</h3>
+            <div id="weather">Loading weather...</div>
+        </section>
+
+        <section class="glass-card">
+            <h3>Aaj ke Kaam</h3>
+            <div class="todo-input-group">
+                <input type="text" id="taskInput" placeholder="Naya kaam likhein...">
+                <button onclick="addTask()">Add</button>
+            </div>
+            <ul id="taskList"></ul>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
