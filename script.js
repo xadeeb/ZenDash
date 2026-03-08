@@ -20,7 +20,18 @@ function addTask() {
 
 function renderTasks() {
     const list = document.getElementById('taskList');
-    list.innerHTML = tasks.map(t => `<li>${t}</li>`).join('');
+    list.innerHTML = tasks.map((t, index) => `
+        <li style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 8px;">
+            <span>${t}</span>
+            <button onclick="deleteTask(${index})" style="background: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer; padding: 2px 8px;">×</button>
+        </li>
+    `).join('');
+}
+
+function deleteTask(index) {
+    tasks.splice(index, 1);
+    localStorage.setItem('zenTasks', JSON.stringify(tasks));
+    renderTasks();
 }
 
 async function getWeather() {
