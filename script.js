@@ -23,6 +23,30 @@ function renderTasks() {
     list.innerHTML = tasks.map(t => `<li>${t}</li>`).join('');
 }
 
+async function getWeather() {
+    const city = 'Moradabad'; // Aap apni city ka naam likh sakte hain
+    try {
+        // wttr.in ek open service hai jo bina key ke data deti hai
+        const response = await fetch(`https://wttr.in/${city}?format=j1`);
+        const data = await response.json();
+
+        const current = data.current_condition[0];
+        const temp = current.temp_C;
+        const desc = current.weatherDesc[0].value;
+
+        document.getElementById('weather').innerHTML = `
+            <div style="font-size: 1.5rem; font-weight: bold;">${temp}°C</div>
+            <p style="text-transform: capitalize;">${desc}</p>
+            <small>${city}, India</small>
+        `;
+    } catch (error) {
+        console.error("Weather error:", error);
+        document.getElementById('weather').innerText = "Mausam ki malomat nahi mil saki.";
+    }
+}
+
+getWeather();
+
 // Initial Render
 renderTasks();
 updateClock();
