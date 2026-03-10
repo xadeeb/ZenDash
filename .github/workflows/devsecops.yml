@@ -3,14 +3,15 @@ name: ZenDash DevSecOps CI/CD
 on:
   push:
     branches: ["main"]
-  workflow_dispatch: # Isse aap manually bhi run kar sakte hain
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 jobs:
+  # Stage 1: Security Scan
   security-scan:
     runs-on: ubuntu-latest
     steps:
@@ -22,16 +23,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # Stage 2: Deployment (Official GitHub Action)
   deploy:
     needs: security-scan
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .       # Root directory
-          force_modify_dot_files: true
-          publish_branch: gh-pages
+          path: '.' # Pure root folder upload hoga
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
