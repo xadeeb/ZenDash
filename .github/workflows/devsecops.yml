@@ -27,9 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./ # Agar index.html main folder mein hai
-          publish_branch: gh-pages # Ye branch GitHub apne aap banayega
+          publish_dir: .       # Root directory
+          force_modify_dot_files: true
+          publish_branch: gh-pages
