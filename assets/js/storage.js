@@ -1,6 +1,6 @@
-const STORAGE_KEY = 'zen_tasks';
+const KEY = 'zen_dash_tasks';
 
 export const storage = {
-    save: (tasks) => localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks)),
-    get: () => JSON.parse(localStorage.getItem(STORAGE_KEY)) || [],
+    save: (tasks) => localStorage.setItem(KEY, JSON.stringify(tasks)),
+    get: () => JSON.parse(localStorage.getItem(KEY)) || []
 };
