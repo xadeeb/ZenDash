@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenDash | Production Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <header class="glass">
+            <h1 id="greeting">Welcome Back!</h1>
+            <div id="clock">00:00:00</div>
+        </header>
+
+        <section id="weather-widget" class="glass">
+            <div id="weather">Fetching weather...</div>
+        </section>
+
+        <section class="glass">
+            <h3>Daily Targets</h3>
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="Add a new task...">
+                <button id="addBtn">Add</button>
+            </div>
+            <ul id="taskList"></ul>
+        </section>
+    </div>
+    <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
