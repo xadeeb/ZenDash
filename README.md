@@ -44,7 +44,7 @@ Clone the repository to your local machine:
 ```git clone [https://github.com/xadeeb/ZenDash.git](https://github.com/xadeeb/ZenDash.git)```
 
 2. Run the Project
-Simply open index.html in any modern web browser or use the VS Code Live Server extension for the best development experience.
+Simply open ```index.html``` in any modern web browser or use the VS Code Live Server extension for the best development experience.
 
 ---
 ### Developed with ❤️ by Mohd Adeeb
