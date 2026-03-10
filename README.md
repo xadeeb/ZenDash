@@ -35,6 +35,8 @@ ZenDash/
 └── README.md            # Project documentation
 ```
 
+---
+
 ## 🚀 Getting Started
 1. Installation
 Clone the repository to your local machine:
@@ -44,3 +46,5 @@ Clone the repository to your local machine:
 2. Run the Project
 Simply open index.html in any modern web browser or use the VS Code Live Server extension for the best development experience.
 
+---
+### Developed with ❤️ by Mohd Adeeb
