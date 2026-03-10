@@ -1,0 +1,40 @@
+name: ZenDash DevSecOps CI/CD
+
+# 1. Trigger: ye batata h ke Yeh pipeline kab chalegi?
+on:
+  push:
+    branches: ["main"] # Jab bhi main branch par code push hoga tab chalega
+
+jobs:
+  # 2. Security Stage (CI/Continuous Integration / DevSecOps)
+  security-scan:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks (Secret Scanner)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # 3. Deployment Stage (CD/Continuous Deployment)
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: security-scan # Yeh tab tak nahi chalega jab tak security scan pass na ho jy 
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy Live
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ # Humara index.html root folder mein hi hai
+          commit_message: "CI/CD: Automated Deployment"
